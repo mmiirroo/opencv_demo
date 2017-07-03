@@ -17,9 +17,11 @@ public class Test {
             System.err.println(parser.nextToken());
             }
         System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
+        String userDir = System.getProperty("user.dir");
+        
         Mat source, template;
-        source = Imgcodecs.imread("D:\\workspace\\my\\TemplateMatch\\pic\\srceenshot.png");
-        template = Imgcodecs.imread("D:\\workspace\\my\\TemplateMatch\\pic\\cctv1.png");;
+        source = Imgcodecs.imread(userDir + "\\pic\\srceenshot.png");
+        template = Imgcodecs.imread(userDir + "\\pic\\cctv1.png");;
         
         Mat result = Mat.zeros(source.rows()- template.rows() + 1, source.cols()-template.cols()+1, CvType.CV_32FC1);
         Imgproc.matchTemplate(source, template, result, Imgproc.TM_SQDIFF_NORMED);
@@ -27,6 +29,6 @@ public class Test {
         Core.MinMaxLocResult mlr = Core.minMaxLoc(result);
         Point matchLoc = mlr.minLoc;
         Imgproc.rectangle(source, matchLoc, new Point(matchLoc.x + template.width(), matchLoc.y + template.height()), new Scalar(0, 255, 0));
-        Imgcodecs.imwrite("D:\\workspace\\my\\TemplateMatch\\pic\\matched.png", source);
+        Imgcodecs.imwrite(userDir + "\\pic\\2.png", source);
     }
 }

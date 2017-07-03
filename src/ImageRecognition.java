@@ -10,7 +10,8 @@ public class ImageRecognition {
     public void matchImage(Mat template, Mat origin) {
         MatOfKeyPoint templateKeyPoints = new MatOfKeyPoint();
         FeatureDetector featureDetector = FeatureDetector.create(FeatureDetector.SURF);
-        
+        featureDetector.detect(template, templateKeyPoints);
+        MatOfKeyPoint templateDescriptors = new MatOfKeyPoint();
         
     }
     public float getNndrRation() {
@@ -24,8 +25,5 @@ public class ImageRecognition {
     }
     public void setMatchPointCount(int matchPointCount) {
         this.matchPointCount = matchPointCount;
-    }
-    public float getNndrRatio() {
-        
     }
 }
